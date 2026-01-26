@@ -1,0 +1,86 @@
+Das Spiel hat mindestens 3 Räume/Level
+
+Jeder Raum hat:
+eine kurze Story/Beschreibung
+ein Rätsel (Eingabe vom Spieler)
+richtig/falsch-Auswertung
+
+Der Spieler kann:
+
+weiterspielen, wenn richtig
+es erneut versuchen, wenn falsch
+Das Spiel kann speichern und laden
+Das Spiel hat ein Menü (Start, Laden, Beenden)
+
+
+
+struktur:
+main.py         -> Menü, start, steuerung
+rooms.py        -> Räume, level, (Texte, aufgaben)
+logic.py        -> Prüfungen, fortschritte, Auswertung
+data.py         -> Speicher und laden
+
+
+Mindestens 3 Räume. Beispiele (ihr dürft eigene Ideen nutzen):
+
+Raum 1: Mathe-Tür
+Aufgabe: „Wie viel ist (5 + 10) * 2?“
+Richtige Antwort: 30
+
+Raum 2: Zahlenfilter-Panel
+Aufgabe: „Gib alle geraden Zahlen aus dieser Liste ein: [3,10,15,22,7]“
+Erwartet: „10 22“ (oder als Liste)
+
+Raum 3: Passwort-Terminal
+Aufgabe: „Gib das Passwort ein (Hinweis: python + 123)“
+Erwartet: „python123“
+Wichtig: Aufgaben müssen klar sein und prüfbar (Textinput).
+
+Logik (logic.py)
+
+Hier kommt die Spiel-Logik rein:
+
+aktueller Raum / Level
+Eingaben prüfen (richtig/falsch)
+Wiederholen bei falscher Antwort
+nächster Raum bei richtiger Antwort
+Ende, wenn alle Räume geschafft
+
+
+data.py
+
+Speicher:
+Spieler Name
+Aktuelles level
+
+
+
+
+Github anteil:
+ede Gruppe/Person erstellt ein GitHub-Repository
+
+Mindestanforderung:
+
+    mind. 5 Commits (nicht alles in einem!)
+    sinnvolle Commit-Nachrichten (z. B. „Raum 1 hinzugefügt“, „Save/Load implementiert“)
+
+Erweiterung:
+
+Wenn Level 1 fertig ist, erweitert das Spiel um 2–3 Features:
+
+    Inventar (z. B. Schlüssel sammeln)
+    Hinweis-System (einmal pro Raum)
+    Zeitlimit oder Versuchslimit
+    mehrere Enden (good/bad ending)
+    Highscore (Zeit oder Versuche speichern)
+
+Erfolgskriterien:
+
+Euer Projekt ist erfolgreich, wenn:
+
+    es mindestens 3 Räume hat
+    stabil läuft (kein Absturz)
+    speichern & laden funktioniert
+    Code auf mehrere Dateien sauber verteilt ist
+    GitHub genutzt wurde (Commits sichtbar)
+
