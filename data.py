@@ -3,6 +3,17 @@
 #data:desc
 #/data/Userscorelist.txt - Contains the users and their score in the format: "Username;Score"
 
+
+# class Active_User:                                                                                                      #creating an active user class for maybe easier temp access
+#     def __init__(self, name, progress):
+#         self.name = name
+#         self.__progress = progress
+#
+#     def get_progress(self):
+#         return self.__progress
+
+
+
 def get_userscores():                                                                                                   #get_userscores() reads out the Userscorelist.txt in data/ and provides the dictonary of users to the program as the variable Userscores
     Userscores = {}
     with open('data/Userscorelist.txt', 'rt') as f:
