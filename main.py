@@ -26,9 +26,9 @@ def loginmenue():                                                               
 
 
 def mainmenue(User,Userscores):
-    print(f"Greetings {User} you are at room {Userscores[User]}")
+    print(f"Greetings {User[0].upper()}{User[1:]} you are at room {Userscores[User]}")
     print(f"\n 1 --- Start  ---\n 2 --- Save   ---\n 3 --- Logout ---\n 4 --- Exit   ---\n")
-    x = input("What would you like to do?")
+    x = input("What would you like to do? ")
     match x:
         #case "1":
         case "2":
