@@ -28,8 +28,9 @@ def get_userscores():                                                           
 
 
 
-def check_user_exist(Userscores, user):                                                                                  #used to check if str input user exists in Userlist
-    if user.lower() in Userscores:                                                                                      #output is bool true or false
+def check_user_exist(Userscores, user):
+    r = f"{user}".lower()#used to check if str input user exists in Userlist
+    if r in Userscores:                                                                                      #output is bool true or false
         return True
     else:
         return False
