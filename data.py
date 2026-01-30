@@ -30,7 +30,7 @@ def get_userscores():                                                           
 
 def check_user_exist(Userscores, user):
     r = f"{user}".lower()#used to check if str input user exists in Userlist
-    if r in Userscores:                                                                                      #output is bool true or false
+    if r in Userscores:                                                                                                 #output is bool true or false
         return True
     else:
         return False
@@ -44,7 +44,7 @@ def save_userdata(Userscores):                                                  
 
 
 
-def get_userprogress(Userscores, user):                                                                                 #used to return score of name from userscores
+def get_userprogress(Userscores, user):                                                                                 #not tested                                                                          #used to return score of name from userscores
         return Userscores[user.lower()]
 
 
