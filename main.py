@@ -4,8 +4,8 @@
 from data import *
 from logic import *
 
-def loginmenue():                                                                                                       #first test if user exists and loading of Userscorelist
-    Input = input("Welcome please enter your Name")                                                                     #than logs in or registers the user to proceed to the main menu
+def loginmenue():                                                                                                        #first test if user exists and loading of Userscorelist
+    Input = input("Welcome please enter your Name")
     User = Input.lower()
     Userscores = get_userscores()
     Checkexist = bool(check_user_exist(Userscores, User))
@@ -27,19 +27,29 @@ def loginmenue():                                                               
 
 
 def mainmenue(User,Userscores):
-    print(f"Greetings {User[0].upper()}{User[1:]} you are at room {Userscores[User]}")                                  #Main menue greets user and provides their data from Userdata for further processes
+    print(f"Greetings {User[0].upper()}{User[1:]} you are at room {Userscores[User]}")
     print(f"\n 1 --- Start  ---\n 2 --- Save   ---\n 3 --- Logout ---\n 4 --- Exit   ---\n")
     x = input("What would you like to do? ")
     match x:
-        #case "1":                                                                                                      #Link to logic, and the game, can provide Userscores dict, User and Userscore as ressources to game logic
-        case "2":                                                                                                       #Link to data, provides Userscores Dict for writing in .txt            save_userdata(Userscores)
+        case "1":
+            result = play_game(User, Userscores)
+
+            if result == "exit":
+                print("Returned to main menu.")
+
+            if result == "victory":
+                print("\n🎉 Congratulations, you completed the game!")
+
+            mainmenue(User, Userscores)
+        case "2":
+            save_userdata(Userscores)
             mainmenue(User,Userscores)
-        case "3":                                                                                                       #returns to login with no data saved, might change it to ask if user wants to save before exiting
+        case "3":
             print("Logged out")
             loginmenue()
-        case "4":                                                                                                       #ends the program dosnt save the data, might change it to ask if user wants to save before exiting
+        case "4":
             print("Exiting, have a nice Day~")
-        case _:                                                                                                         #reruns the function
+        case _:
             print("Not a valid input, try again")
             mainmenue(User,Userscores)
 
