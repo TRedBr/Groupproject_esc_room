@@ -53,6 +53,8 @@ def save_userdata(userlist, userscores, user):
         cursor.execute(
             f"INSERT INTO users VALUES ({newID}, '{user}', {userscores[user]})"
         )
+    conn.commit()
+
 
 def get_userscores(userlist):
     userscores = {}
@@ -70,9 +72,9 @@ def check_user_exist(userscores, user):
 
 
 # print(lowestID(get_userlist()))
+userlist = get_userlist()
 userscores = get_userscores(get_userlist())
 # userscores.update({"tom":2})
-userlist = get_userlist()
 save_userdata(userlist, userscores, "tom")
 cursor.execute("SELECT * FROM users")
 print(cursor.fetchall())
