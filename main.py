@@ -3,6 +3,7 @@
 
 from data import *
 from databank import *
+from logic import *
 
 
 def loginmenue():#first test if user exists and loading of userscorelist
@@ -28,19 +29,28 @@ def loginmenue():#first test if user exists and loading of userscorelist
 
 
 
-def mainmenue(user,userscores,userlist):
-    print(f"Greetings {user[0].upper()}{user[1:]} you are at room {userscores[user]}")                                  #Main menue greets user and provides their data from userdata for further processes
+def mainmenue(User,Userscores):
+    print(f"Greetings {User[0].upper()}{User[1:]} you are at room {Userscores[User]}")
     print(f"\n 1 --- Start  ---\n 2 --- Save   ---\n 3 --- Logout ---\n 4 --- Exit   ---\n")
     x = input("What would you like to do? ")
     match x:
-        #case "1":                                                                                                      #Link to logic, and the game, can provide userscores dict, user and userscore as ressources to game logic
+        case "1":
+            result = play_game(User, Userscores)
+
+            if result == "exit":
+                print("Returned to main menu.")
+
+            if result == "victory":
+                print("\n🎉 Congratulations, you completed the game!")
+
+            mainmenue(User, Userscores)
         case "2":
-            save_userdata(userlist,userscores,user)#Link to data, provides userscores Dict for writing in .txt            save_userdata(userscores)
-            mainmenue(user,userscores,userlist)
-        case "3":                                                                                                       #returns to login with no data saved, might change it to ask if user wants to save before exiting
+            save_userdata(Userscores)
+            mainmenue(User,Userscores)
+        case "3":
             print("Logged out")
             loginmenue()
-        case "4":                                                                                                       #ends the program dosnt save the data, might change it to ask if user wants to save before exiting
+        case "4":
             print("Exiting, have a nice Day~")
             deinitialisedatabank()
         case _:                                                                                                         #reruns the function
