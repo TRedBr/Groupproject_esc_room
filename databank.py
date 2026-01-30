@@ -1,8 +1,11 @@
 import sqlite3
 from operator import truediv
 
-conn = sqlite3.connect("data/Userscorelist.db")
+conn = sqlite3.connect(f"data/Userscorelist.db")
 cursor = conn.cursor()
+
+def deinitialisedatabank():
+    conn.close()
 
 # cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT, score INTEGER)")
 # cursor.execute("INSERT INTO users VALUES (1, 'tom', 1)")
@@ -18,8 +21,8 @@ cursor = conn.cursor()
 # conn.commit()
 
 
-cursor.execute("SELECT * FROM users")
-print(cursor.fetchall())
+# cursor.execute("SELECT * FROM users")
+# print(cursor.fetchall())
 
 
 def get_userlist():
@@ -38,17 +41,31 @@ def lowestID(userlist):
     return ID
 
 
-# def save_user(userlist, )
+def save_userdata(userlist, userscores, user):
+    print(userlist)
+    entrylist = []
+    for entry in userlist:
+        entrylist.append(entry[1])
+    if user in entrylist:
+        cursor.execute(
+            f"UPDATE users SET score = {userscores[user]} WHERE name = '{user}'"
+        )
+    else:
+        newID = lowestID(userlist)
+        cursor.execute(
+            f"INSERT INTO users VALUES ({newID}, '{user}', {userscores[user]})"
+        )
 
 def get_userscores(userlist):
-    Userscores = {}
+    userscores = {}
     for user in userlist:
-        Userscores.update({user[1]: user[2]})
-    return Userscores
+        userscores.update({user[1]: user[2]})
+    return userscores
 
-def check_user_exist(Userscores, user):
-    r = f"{user}".lower()  # used to check if str input user exists in Userlist
-    if r in Userscores:  # output is bool true or false
+
+def check_user_exist(userscores, user):
+    r = f"{user}".lower()  # used to check if str input user exists in userlist
+    if r in userscores:  # output is bool true or false
         return True
     else:
         return False
@@ -57,4 +74,4 @@ def check_user_exist(Userscores, user):
 # print(lowestID(get_userlist()))
 
 
-conn.close()  # gotta run conn.close() at the end atm
+# conn.close()  # gotta run conn.close() at the end atm
