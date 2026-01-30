@@ -40,7 +40,7 @@ def mainmenue(user, userscores, userlist):
 
             if result == "victory":
                 print("\n🎉 Congratulations, you completed the game!")
-                # reset_game(user, userscores)
+                reset_game(userscores, user)
 
             mainmenue(user, userscores, userlist)
         case "2":

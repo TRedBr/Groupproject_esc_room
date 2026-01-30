@@ -26,7 +26,7 @@ def play_game(user, userscores):
 
     return "victory"
 
-def reset_game(user, userscores):
+def reset_game(userscores, user):
     putin = input("To reset press r: ")
     match putin.lower():
         case "r":
