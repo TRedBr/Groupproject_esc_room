@@ -6,7 +6,7 @@ from logic import *
 
 
 def loginmenue():  # first test if user exists and loading of userscorelist
-    Input = input("Welcome please enter your Name")  # than logs in or registers the user to proceed to the main menu
+    Input = input("Welcome please enter your Name: ")  # than logs in or registers the user to proceed to the main menu
     user = Input.lower()
     userlist = get_userlist()
     userscores = get_userscores(userlist)
@@ -40,6 +40,7 @@ def mainmenue(user, userscores, userlist):
 
             if result == "victory":
                 print("\n🎉 Congratulations, you completed the game!")
+                reset_game(userscores, user)
 
             mainmenue(user, userscores, userlist)
         case "2":
