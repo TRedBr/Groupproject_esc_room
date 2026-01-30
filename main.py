@@ -2,6 +2,7 @@
 #it ll require the functions of data.py, logic.py, and rooms.py to function
 
 from data import *
+from logic import *
 
 def loginmenue():                                                                                                        #first test if user exists and loading of Userscorelist
     Input = input("Welcome please enter your Name")
@@ -30,7 +31,16 @@ def mainmenue(User,Userscores):
     print(f"\n 1 --- Start  ---\n 2 --- Save   ---\n 3 --- Logout ---\n 4 --- Exit   ---\n")
     x = input("What would you like to do? ")
     match x:
-        #case "1":
+        case "1":
+            result = play_game(User, Userscores)
+
+            if result == "exit":
+                print("Returned to main menu.")
+
+            if result == "victory":
+                print("\n🎉 Congratulations, you completed the game!")
+
+            mainmenue(User, Userscores)
         case "2":
             save_userdata(Userscores)
             mainmenue(User,Userscores)

@@ -13,7 +13,10 @@ class Room:
     def room_execute(self):
         print(f"\nHello! Welcome at the {self.name}.")
         print(f"Task: {self.task}")
-        user_input = input("Please enter your answer: ").strip()
+        user_input = input("Please enter your answer (or 'exit'): ").strip()
+
+        if user_input == "exit":
+            return "exit"
 
         if user_input == self.__answer:
             print("Correct answer.")
@@ -35,7 +38,7 @@ r2 = Room(
 )
 r3 = Room(
     "Password-Terminal",
-    "Enter the password. (Hint: python + 123",
+    "Enter the password. (Hint: python + 123)",
     "python123"
 )
 

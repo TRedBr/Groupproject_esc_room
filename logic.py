@@ -2,53 +2,29 @@
 # if player advances a room(score) or repeats it. Checks if all rooms are cleared.
 ##requires data.py and rooms.py
 from rooms import r1, r2, r3
-from data import get_userscores, check_user_exist, get_userprogress, save_userdata
 
+rooms = [r1, r2, r3]
 
-class Game:                 #since the rooms are already classes you might consider making them an inner class
-    def __init__(self):     ##alternatively it is questionable if you want to run the game as a class, as it would require initialisation of a game object from main.py
-        self.rooms = [r1, r2, r3]
-        self.current_room_index = 0
-        self.username = ""
-        self.userscores = get_userscores()
+def play_game(user, userscores):
+    current_room_index = userscores[user]
 
-    def new_game(self):
-        self.username = input("Please enter your username: ").strip()
+    while current_room_index < len(rooms):
+        current_room = rooms[current_room_index]
 
-        if not check_user_exist(self.userscores, self.username):
-            self.userscores[self.username] = 0 #always resets to 0
-        print(f"Welcome {self.username}, let's start the game!")
+        while True:
+            result = current_room.room_execute()
 
-        while self.current_room_index < len(self.rooms):
-            current_room = self.rooms[self.current_room_index]
+            if result == "exit":
+                userscores[user] = current_room_index
+                return "exit"
 
-            while not current_room.room_execute():
-                pass
+            if result is True:
+                break
 
-            self.current_room_index += 1
-            save_userdata(self.userscores)
+        current_room_index += 1
+        userscores[user] = current_room_index
 
-        print("Congratulations! You've completed the Game.")
-
-        self.userscores[self.username] = self.current_room_index
-        save_userdata(self.userscores)
-
-    def load_game(self):
-        if check_user_exist(self.userscores, self.username):
-            user_score = get_userprogress(self.userscores, self.username)
-            self.current_room_index = user_score
-            print(f"Welcome back {self.username}, resuming from room {self.current_room_index} + 1.")
-
-        while self.current_room_index < len(self.rooms):
-            current_room = self.rooms[self.current_room_index]
-
-            while not current_room.room_execute():
-                pass
-
-            self.current_room_index += 1
-            save_userdata(self.userscores)
-
-        print("Congratulations! You've completed the Game.")
+    return "victory"
 
 
 #controll block
