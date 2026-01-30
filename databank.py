@@ -1,5 +1,5 @@
 import sqlite3
-from operator import truediv
+
 
 conn = sqlite3.connect(f"data/userscorelist.db")
 cursor = conn.cursor()
@@ -63,7 +63,7 @@ def get_userscores(userlist):
     return userscores
 
 
-def check_user_exist(userscores, user):
+def check_user_exist(user, userscores):
     r = f"{user}".lower()  # used to check if str input user exists in userlist
     if r in userscores:  # output is bool true or false
         return True
@@ -71,9 +71,12 @@ def check_user_exist(userscores, user):
         return False
 
 
-# print(lowestID(get_userlist()))
+#print(lowestID(get_userlist()))
 # userlist = get_userlist()
 # userscores = get_userscores(get_userlist())
+# print(check_user_exist("tom", userscores))
+# print(userlist)
+# print(userscores)
 # userscores.update({"tom":2})
 # save_userdata(userlist, userscores, "tom")
 # cursor.execute("SELECT * FROM users")

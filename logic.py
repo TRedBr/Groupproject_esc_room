@@ -26,6 +26,14 @@ def play_game(user, userscores):
 
     return "victory"
 
+def reset_game(user, userscores):
+    putin = input("To reset press r: ")
+    match putin.lower():
+        case "r":
+            print("Your progress was reset.")
+            userscores[user] = 0
+        case _:
+            print("Returnin to menu.")
 
 #controll block
 # Thisgame = Game()
