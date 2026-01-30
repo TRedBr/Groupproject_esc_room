@@ -41,7 +41,3 @@ r3 = Room(
     "Enter the password. (Hint: python + 123)",
     "python123"
 )
-
-##---TRedBr---Comment
-#rooms all work
-#r3 missing a ) after the hint
