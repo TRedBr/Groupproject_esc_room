@@ -72,12 +72,12 @@ def check_user_exist(userscores, user):
 
 
 # print(lowestID(get_userlist()))
-userlist = get_userlist()
-userscores = get_userscores(get_userlist())
+# userlist = get_userlist()
+# userscores = get_userscores(get_userlist())
 # userscores.update({"tom":2})
-save_userdata(userlist, userscores, "tom")
-cursor.execute("SELECT * FROM users")
-print(cursor.fetchall())
-
-
-conn.close()  # gotta run conn.close() at the end atm
+# save_userdata(userlist, userscores, "tom")
+# cursor.execute("SELECT * FROM users")
+# print(cursor.fetchall())
+#
+#
+# conn.close()  # gotta run conn.close() at the end atm
