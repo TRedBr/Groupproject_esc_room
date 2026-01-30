@@ -2,27 +2,30 @@
 #it ll require the functions of data.py, logic.py, and rooms.py to function
 
 from data import *
+from databank import *
 from logic import *
 
-def loginmenue():                                                                                                        #first test if user exists and loading of Userscorelist
-    Input = input("Welcome please enter your Name")
-    User = Input.lower()
-    Userscores = get_userscores()
-    Checkexist = bool(check_user_exist(Userscores, User))
+
+def loginmenue():#first test if user exists and loading of userscorelist
+    Input = input("Welcome please enter your Name")                                                                     #than logs in or registers the user to proceed to the main menu
+    user = Input.lower()
+    userlist = get_userlist()
+    userscores = get_userscores(userlist)
+    Checkexist = bool(check_user_exist(userscores, user))
     if Checkexist == False:
-        print(f"\033[0;31m{User}\033[0m not found")
+        print(f"\033[0;31m{user}\033[0m not found")
         newtry = input("Would you like to create a new profile? y/n")
         match newtry.lower():
             case "y":
-                Userscores.update({User: 0})
-                print(f"New User \033[0;34m{User}\033[0m created")
-                mainmenue(User,Userscores)
+                userscores.update({user: 0})
+                print(f"New user \033[0;34m{user}\033[0m created")
+                mainmenue(user,userscores,userlist)
             case _:
                 print("returning to login")
                 loginmenue()
     else:
-        print(f"User \033[0;34m{User}\033[0m found")
-        mainmenue(User,Userscores)
+        print(f"user \033[0;34m{user}\033[0m found")
+        mainmenue(user,userscores,userlist)
 
 
 
@@ -49,9 +52,10 @@ def mainmenue(User,Userscores):
             loginmenue()
         case "4":
             print("Exiting, have a nice Day~")
-        case _:
+            deinitialisedatabank()
+        case _:                                                                                                         #reruns the function
             print("Not a valid input, try again")
-            mainmenue(User,Userscores)
+            mainmenue(user,userscores,userlist)
 
 
 loginmenue()
