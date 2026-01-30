@@ -2,6 +2,7 @@
 #it ll require the functions of data.py, logic.py, and rooms.py to function
 
 from data import *
+from logic import *
 
 def loginmenue():                                                                                                       #first test if user exists and loading of Userscorelist
     Input = input("Welcome please enter your Name")                                                                     #than logs in or registers the user to proceed to the main menu
