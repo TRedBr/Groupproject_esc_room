@@ -1,13 +1,12 @@
-#this is the main user interface, from here we ll let the user login, access the rooms, and save their scores
-#it ll require the functions of data.py, logic.py, and rooms.py to function
+# this is the main user interface, from here we ll let the user login, access the rooms, and save their scores
+# it ll require the functions of data.py, logic.py, and rooms.py to function
 
-from data import *
 from databank import *
 from logic import *
 
 
-def loginmenue():#first test if user exists and loading of userscorelist
-    Input = input("Welcome please enter your Name")                                                                     #than logs in or registers the user to proceed to the main menu
+def loginmenue():  # first test if user exists and loading of userscorelist
+    Input = input("Welcome please enter your Name")  # than logs in or registers the user to proceed to the main menu
     user = Input.lower()
     userlist = get_userlist()
     userscores = get_userscores(userlist)
@@ -19,23 +18,22 @@ def loginmenue():#first test if user exists and loading of userscorelist
             case "y":
                 userscores.update({user: 0})
                 print(f"New user \033[0;34m{user}\033[0m created")
-                mainmenue(user,userscores,userlist)
+                mainmenue(user, userscores, userlist)
             case _:
                 print("returning to login")
                 loginmenue()
     else:
         print(f"user \033[0;34m{user}\033[0m found")
-        mainmenue(user,userscores,userlist)
+        mainmenue(user, userscores, userlist)
 
 
-
-def mainmenue(User,Userscores):
-    print(f"Greetings {User[0].upper()}{User[1:]} you are at room {Userscores[User]}")
+def mainmenue(user, userscores, userlist):
+    print(f"Greetings {user[0].upper()}{user[1:]} you are at room {userscores[user]}")
     print(f"\n 1 --- Start  ---\n 2 --- Save   ---\n 3 --- Logout ---\n 4 --- Exit   ---\n")
     x = input("What would you like to do? ")
     match x:
         case "1":
-            result = play_game(User, Userscores)
+            result = play_game(user, userscores)
 
             if result == "exit":
                 print("Returned to main menu.")
@@ -43,19 +41,19 @@ def mainmenue(User,Userscores):
             if result == "victory":
                 print("\n🎉 Congratulations, you completed the game!")
 
-            mainmenue(User, Userscores)
+            mainmenue(user, userscores, userlist)
         case "2":
-            save_userdata(Userscores)
-            mainmenue(User,Userscores)
+            save_userdata(userlist, userscores, user)
+            mainmenue(user, userscores, userlist)
         case "3":
             print("Logged out")
             loginmenue()
         case "4":
             print("Exiting, have a nice Day~")
             deinitialisedatabank()
-        case _:                                                                                                         #reruns the function
+        case _:  # reruns the function
             print("Not a valid input, try again")
-            mainmenue(user,userscores,userlist)
+            mainmenue(user, userscores, userlist)
 
 
 loginmenue()

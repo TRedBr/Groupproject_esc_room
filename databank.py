@@ -1,7 +1,7 @@
 import sqlite3
 from operator import truediv
 
-conn = sqlite3.connect(f"data/Userscorelist.db")
+conn = sqlite3.connect(f"data/userscorelist.db")
 cursor = conn.cursor()
 
 def deinitialisedatabank():
@@ -21,8 +21,7 @@ def deinitialisedatabank():
 # conn.commit()
 
 
-# cursor.execute("SELECT * FROM users")
-# print(cursor.fetchall())
+
 
 
 def get_userlist():
@@ -42,7 +41,6 @@ def lowestID(userlist):
 
 
 def save_userdata(userlist, userscores, user):
-    print(userlist)
     entrylist = []
     for entry in userlist:
         entrylist.append(entry[1])
@@ -72,6 +70,12 @@ def check_user_exist(userscores, user):
 
 
 # print(lowestID(get_userlist()))
+userscores = get_userscores(get_userlist())
+# userscores.update({"tom":2})
+userlist = get_userlist()
+save_userdata(userlist, userscores, "tom")
+cursor.execute("SELECT * FROM users")
+print(cursor.fetchall())
 
 
-# conn.close()  # gotta run conn.close() at the end atm
+conn.close()  # gotta run conn.close() at the end atm
